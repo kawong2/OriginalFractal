@@ -1,36 +1,26 @@
-int length = 500;
-int r = 0;
-int h = 500;
-int v = 500;
-int c = -100;
-public void setup() {
-noStroke();
-size(1000, 1000, P3D);
-background(255);
+public void setup()
+{
+  size(600, 600);
+  stroke(250);
+  strokeWeight(0.55);
 }
 
-public void draw() {
-if (mousePressed == true) {
-translate(h, v);
-rotate(radians(r));
-length += (int)(Math.random() * 100);
-r += 5;
-if (r % 360 == 0)
-c += 20;
-sierpinski(0, c, length);
-if (c >= 0){
-  textSize(100);
-  fill(255, 0, 0);
-  exit();
-    }
+public void draw()
+{
+  background(237,233,233);
+  rose(300, 300, 600);
+}
+
+public void rose(int x, int y, int size)
+{
+  fill(235,103,103, 35);
+  ellipse(x, y, size, size);
+  ellipse(x+size/5, y, size, size);
+  ellipse(x-size/5, y, size, size);
+  ellipse(x, y-size/5, size, size);
+  ellipse(x, y+size/5, size, size);
+  if (size > 10)
+  {
+    rose(x, y, size/2);
   }
-}
-
-public void sierpinski(int x, int y, int len) {
-fill((int)(Math.random() * 255) + 100, 0, 0);
-if(len <= 20){
-ellipse(x, y, len + 50, len + 50);
-} else {
-sierpinski(x, y, len / 2);
-}
 }
